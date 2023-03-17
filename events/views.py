@@ -1,3 +1,4 @@
+from django.conf import settings
 from django.utils.decorators import method_decorator
 from django.views.decorators.cache import cache_page
 from rest_framework.generics import (
@@ -18,21 +19,19 @@ from events.serializers import (
 )
 from events.tasks import export_events
 
-cache_time = 60 * 60
-
 
 class CreateEventView(CreateAPIView, UpdateAPIView):
     queryset = Event.objects.all()
     serializer_class = EventSerializer
 
 
-@method_decorator(cache_page(cache_time), "get")
+@method_decorator(cache_page(settings.CACHE_TIME), "get")
 class ListEventView(ListAPIView):
     queryset = Event.objects.all()
     serializer_class = EventSerializer
 
 
-@method_decorator(cache_page(cache_time), "get")
+@method_decorator(cache_page(settings.CACHE_TIME), "get")
 class RetriveEventView(RetrieveAPIView):
     serializer_class = EventSerializer
 
@@ -42,7 +41,7 @@ class RetriveEventView(RetrieveAPIView):
         return Event.objects.all().order_by("start", f"performences__{sort_by}")
 
 
-@method_decorator(cache_page(cache_time), "get")
+@method_decorator(cache_page(settings.CACHE_TIME), "get")
 class PerformenceView(ListAPIView):
     queryset = Performence.objects.all()
     serializer_class = PerformenceSerializer
