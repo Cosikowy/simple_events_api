@@ -1,6 +1,7 @@
 from django.conf import settings
 from django.utils.decorators import method_decorator
 from django.views.decorators.cache import cache_page
+from drf_spectacular.utils import OpenApiParameter, extend_schema
 from rest_framework.generics import (
     CreateAPIView,
     DestroyAPIView,
@@ -20,7 +21,12 @@ from events.serializers import (
 from events.tasks import export_events
 
 
-class CreateEventView(CreateAPIView, UpdateAPIView):
+class CreateEventView(CreateAPIView):
+    queryset = Event.objects.all()
+    serializer_class = EventSerializer
+
+
+class UpdateEventView(UpdateAPIView):
     queryset = Event.objects.all()
     serializer_class = EventSerializer
 
@@ -32,6 +38,16 @@ class ListEventView(ListAPIView):
 
 
 @method_decorator(cache_page(settings.CACHE_TIME), "get")
+@extend_schema(
+    parameters=[
+        OpenApiParameter(
+            "sort",
+            description="Order of sorting for performence entries",
+            required=False,
+            type=str,
+        )
+    ]
+)
 class RetriveEventView(RetrieveAPIView):
     serializer_class = EventSerializer
 
