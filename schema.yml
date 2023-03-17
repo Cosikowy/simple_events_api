@@ -1,0 +1,402 @@
+openapi: 3.0.3
+info:
+  title: Event API
+  version: 0.0.1
+  description: Simple Event REST API
+paths:
+  /event/:
+    get:
+      operationId: event_list
+      tags:
+      - event
+      security:
+      - cookieAuth: []
+      - basicAuth: []
+      - {}
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Event'
+          description: ''
+  /event/{id}/:
+    get:
+      operationId: event_retrieve
+      parameters:
+      - in: path
+        name: id
+        schema:
+          type: integer
+        required: true
+      tags:
+      - event
+      security:
+      - cookieAuth: []
+      - basicAuth: []
+      - {}
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Event'
+          description: ''
+  /event/create/:
+    post:
+      operationId: event_create_create
+      tags:
+      - event
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Event'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/Event'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/Event'
+        required: true
+      security:
+      - cookieAuth: []
+      - basicAuth: []
+      - {}
+      responses:
+        '201':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Event'
+          description: ''
+    put:
+      operationId: event_create_update
+      tags:
+      - event
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Event'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/Event'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/Event'
+        required: true
+      security:
+      - cookieAuth: []
+      - basicAuth: []
+      - {}
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Event'
+          description: ''
+    patch:
+      operationId: event_create_partial_update
+      tags:
+      - event
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/PatchedEvent'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/PatchedEvent'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/PatchedEvent'
+      security:
+      - cookieAuth: []
+      - basicAuth: []
+      - {}
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Event'
+          description: ''
+  /event/export/:
+    post:
+      operationId: event_export_create
+      tags:
+      - event
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ExportEvent'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/ExportEvent'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/ExportEvent'
+        required: true
+      security:
+      - cookieAuth: []
+      - basicAuth: []
+      - {}
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ExportEvent'
+          description: ''
+  /event/performance/:
+    get:
+      operationId: event_performance_list
+      tags:
+      - event
+      security:
+      - cookieAuth: []
+      - basicAuth: []
+      - {}
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Performence'
+          description: ''
+  /event/performance/manage/:
+    post:
+      operationId: event_performance_manage_create
+      tags:
+      - event
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Performence'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/Performence'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/Performence'
+        required: true
+      security:
+      - cookieAuth: []
+      - basicAuth: []
+      - {}
+      responses:
+        '201':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Performence'
+          description: ''
+    put:
+      operationId: event_performance_manage_update
+      tags:
+      - event
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Performence'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/Performence'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/Performence'
+        required: true
+      security:
+      - cookieAuth: []
+      - basicAuth: []
+      - {}
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Performence'
+          description: ''
+    patch:
+      operationId: event_performance_manage_partial_update
+      tags:
+      - event
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/PatchedPerformence'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/PatchedPerformence'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/PatchedPerformence'
+      security:
+      - cookieAuth: []
+      - basicAuth: []
+      - {}
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Performence'
+          description: ''
+    delete:
+      operationId: event_performance_manage_destroy
+      tags:
+      - event
+      security:
+      - cookieAuth: []
+      - basicAuth: []
+      - {}
+      responses:
+        '204':
+          description: No response body
+components:
+  schemas:
+    Artist:
+      type: object
+      properties:
+        id:
+          type: integer
+          readOnly: true
+        name:
+          type: string
+          title: Artist name
+          maxLength: 100
+        music_genre:
+          nullable: true
+          oneOf:
+          - $ref: '#/components/schemas/MusicGenreEnum'
+          - $ref: '#/components/schemas/BlankEnum'
+          - $ref: '#/components/schemas/NullEnum'
+      required:
+      - id
+      - name
+    BlankEnum:
+      enum:
+      - ''
+    Event:
+      type: object
+      properties:
+        performences:
+          type: array
+          items:
+            $ref: '#/components/schemas/Performence'
+          readOnly: true
+        name:
+          type: string
+          title: Event name
+          maxLength: 100
+        start:
+          type: string
+          format: date-time
+        end:
+          type: string
+          format: date-time
+      required:
+      - name
+      - performences
+    ExportEvent:
+      type: object
+      properties:
+        url:
+          type: string
+      required:
+      - url
+    MusicGenreEnum:
+      enum:
+      - rock
+      - alternative
+      - hardstyle
+      - hardcore
+      - lofi
+      type: string
+      description: |-
+        * `rock` - rock music
+        * `alternative` - alternative music
+        * `hardstyle` - hardstyle music
+        * `hardcore` - hardcore music
+        * `lofi` - lofi music
+    NullEnum:
+      enum:
+      - null
+    PatchedEvent:
+      type: object
+      properties:
+        performences:
+          type: array
+          items:
+            $ref: '#/components/schemas/Performence'
+          readOnly: true
+        name:
+          type: string
+          title: Event name
+          maxLength: 100
+        start:
+          type: string
+          format: date-time
+        end:
+          type: string
+          format: date-time
+    PatchedPerformence:
+      type: object
+      properties:
+        id:
+          type: integer
+          readOnly: true
+        artist:
+          type: array
+          items:
+            $ref: '#/components/schemas/Artist'
+          readOnly: true
+        start:
+          type: string
+          format: date-time
+        end:
+          type: string
+          format: date-time
+        event:
+          type: integer
+    Performence:
+      type: object
+      properties:
+        id:
+          type: integer
+          readOnly: true
+        artist:
+          type: array
+          items:
+            $ref: '#/components/schemas/Artist'
+          readOnly: true
+        start:
+          type: string
+          format: date-time
+        end:
+          type: string
+          format: date-time
+        event:
+          type: integer
+      required:
+      - artist
+      - event
+      - id
+  securitySchemes:
+    basicAuth:
+      type: http
+      scheme: basic
+    cookieAuth:
+      type: apiKey
+      in: cookie
+      name: sessionid
