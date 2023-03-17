@@ -39,7 +39,7 @@ class RetriveEventView(RetrieveAPIView):
     def get_queryset(self):
         asc = self.request.GET.get("sort", True)
         sort_by = "start" if asc else "-start"
-        return Event.objects.all().order_by(f"performences__{sort_by}")
+        return Event.objects.all().order_by("start", f"performences__{sort_by}")
 
 
 @method_decorator(cache_page(cache_time), "get")
